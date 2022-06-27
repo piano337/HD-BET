@@ -7,7 +7,21 @@ import imp
 from HD_BET.utils import postprocess_prediction, SetNetworkToVal, get_params_fname, maybe_download_parameters
 import os
 import HD_BET
+import time
 
+
+HEADER = '\033[95m'
+OKBLUE = '\033[94m'
+OKCYAN = '\033[96m'
+OKGREEN = '\033[92m'
+WARN = '\033[93m'
+FAIL = '\033[91m'
+ENDC = '\033[0m'
+BOLD = '\033[1m'
+UNDERLINE = '\033[4m'
+
+def debugPrint(x, prefix = 'Runtime: ', suffix = " mins"):
+    print(f'{prefix}{COLOR.WARN}{x}{COLOR.ENDC}{suffix}')
 
 def apply_bet(img, bet, out_fname):
     img_itk = sitk.ReadImage(img)
@@ -35,6 +49,7 @@ def run_hd_bet(mri_fnames, output_fnames, mode="accurate", config_file=os.path.j
     :return:
     """
 
+    START_TIME = time.time()
     list_of_param_files = []
 
     if mode == 'fast':
@@ -113,5 +128,6 @@ def run_hd_bet(mri_fnames, output_fnames, mode="accurate", config_file=os.path.j
 
             if not keep_mask:
                 os.remove(mask_fname)
-
+    
+    debugPrint((time.time() - START_TIME)/60)
 
