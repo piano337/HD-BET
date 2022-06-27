@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(name='HD_BET',
       version='1.0',
       description='Tool for brain extraction',
-      url='https://github.com/MIC-DKFZ/hd-bet',
+      url='https://github.com/piano337/HD-BET',
       python_requires='>=3.5',
       author='Fabian Isensee',
       author_email='f.isensee@dkfz.de',
